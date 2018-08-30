@@ -1,10 +1,12 @@
-package ca.cours5b5.kevinfafard;
+package ca.cours5b5.kevinfafard.activites;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-public class Parametres extends AppCompatActivity {
+import ca.cours5b5.kevinfafard.R;
+
+public class AParametres extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
