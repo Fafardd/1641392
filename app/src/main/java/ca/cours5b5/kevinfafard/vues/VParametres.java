@@ -42,7 +42,7 @@ public class VParametres extends ConstraintLayout{
         for(int i = GConstantes.hauteurMin; i<=GConstantes.hauteurMax; i++){
             adapterHauteur.add(i);
         }
-        hauteurSpinner.setSelection(GConstantes.hauteurDefaut - GConstantes.hauteurMin);
+        hauteurSpinner.setSelection(adapterHauteur.getPosition(GConstantes.hauteurDefaut));
 
 
         ArrayAdapter<Integer> adapterLargeur = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
@@ -50,13 +50,13 @@ public class VParametres extends ConstraintLayout{
         for(int i=GConstantes.largeurMin; i<=GConstantes.hauteurMax;i++){
             adapterLargeur.add(i);
         }
-        largeurSpinner.setSelection(GConstantes.largeurDefaut - GConstantes.largeurMin);
+        largeurSpinner.setSelection(adapterLargeur.getPosition(GConstantes.largeurDefaut));
 
         ArrayAdapter<Integer> adapterPourGagner = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
         pourGagnerSpinner.setAdapter(adapterPourGagner);
         for(int i=GConstantes.pourGagnerMin; i<=GConstantes.pourGagnerMax;i++){
             adapterPourGagner.add(i);
         }
-        pourGagnerSpinner.setSelection(GConstantes.pourGagnerDefaut - GConstantes.pourGagnerMin);
+        pourGagnerSpinner.setSelection(adapterPourGagner.getPosition(GConstantes.pourGagnerDefaut));
     }
 }

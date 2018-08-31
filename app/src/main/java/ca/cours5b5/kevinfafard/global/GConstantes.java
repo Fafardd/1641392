@@ -11,5 +11,5 @@ public class GConstantes {
 
     public static int pourGagnerMin = 3;
     public static int pourGagnerMax = 4;
-    public static int pourGagnerDefaut = 3;
+    public static int pourGagnerDefaut = 4;
 }
