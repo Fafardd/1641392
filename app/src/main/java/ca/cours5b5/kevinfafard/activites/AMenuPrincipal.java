@@ -1,24 +1,24 @@
 package ca.cours5b5.kevinfafard.activites;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 import ca.cours5b5.kevinfafard.R;
 
-public class AParametres extends AppCompatActivity {
+public class AMenuPrincipal extends AppCompatActivity {
 
     static{
-        Log.d("Atelier04", AParametres.class.getSimpleName() + ":: static");
+        Log.d("Atelier04", AMenuPrincipal.class.getSimpleName() + ":: static");
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         Log.d("Atelier04", this.getClass().getSimpleName() + ":: onCreate");
         super.onCreate(savedInstanceState);
         Log.d("MonEtiquette",this.getResources().getString(R.string.LANGUAGE));
-        setContentView(R.layout.activity_parametres);
+        setContentView(R.layout.activity_menuprincipal);
 
         if(this.getResources().getBoolean(R.bool.est_paysage)){
             Log.d("MonEtiquette",this.getResources().getString(R.string.LANGUAGE) + " paysage");
@@ -26,7 +26,13 @@ public class AParametres extends AppCompatActivity {
             Log.d("MonEtiquette",this.getResources().getString(R.string.LANGUAGE) + " portrait");
         }
 
+        //Intent monIntention = new Intent(this, AParametres.class);
+        //startActivity(monIntention);
+    }
 
+    public void sendMessage(View view){
+        Intent monIntention = new Intent(this, AParametres.class);
+        startActivity(monIntention);
     }
 
     @Override

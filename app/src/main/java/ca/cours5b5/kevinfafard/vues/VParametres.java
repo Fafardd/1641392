@@ -12,7 +12,11 @@ import android.widget.TextView;
 import ca.cours5b5.kevinfafard.R;
 import ca.cours5b5.kevinfafard.global.GConstantes;
 
-public class VParametres extends ConstraintLayout{
+public class VParametres extends ConstraintLayout implements Vue{
+
+    static {
+        Log.d("Atelier4", VParametres.class.getSimpleName() + " :: static");
+    }
     public VParametres(Context context){
         super(context);
     }
@@ -26,6 +30,7 @@ public class VParametres extends ConstraintLayout{
 
     @Override
     protected void onFinishInflate() {
+        Log.d("Atelier04", this.getClass().getSimpleName() + ":: onFinishInflate");
         super.onFinishInflate();
         Log.d("kevintest","valeur2");
         Spinner hauteurSpinner = this.findViewById(R.id.hauteurSpinner);

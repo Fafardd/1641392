@@ -4,4 +4,5 @@
     <string name="HAUTEUR">Height: </string>
     <string name="LARGEUR">Width: </string>
     <string name="POURGANGER">To win: </string>
+    <string name="Param">Parameters</string>
 </resources>
