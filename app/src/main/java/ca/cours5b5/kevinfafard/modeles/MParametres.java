@@ -1,26 +1,37 @@
 package ca.cours5b5.kevinfafard.modeles;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class MParametres {
+import ca.cours5b5.kevinfafard.global.GConstantes;
+import ca.cours5b5.kevinfafard.serialisation.AttributSerialisable;
 
-    public static MParametres instance;
+public class MParametres extends Modele{
+
+    public static MParametres instance = new MParametres();
 
     @AttributSerialisable
     public Integer hauteur;
+    private  final String __hauteur = "hauteur";
 
     @AttributSerialisable
     public Integer largeur;
+    private  final String __largeur = "largeur";
 
     @AttributSerialisable
     public Integer pourGagner;
+    private  final String __pourGagner = "pourGagner";
 
     private List<Integer> choixHauteur;
     private List<Integer> choixLargeur;
     private List<Integer> choixPourGagner;
 
     public MParametres(){
-
+        //MParametres instance = new MParametres();
+        hauteur = GConstantes.hauteurDefaut;
+        largeur = GConstantes.largeurDefaut;
+        pourGagner = GConstantes.pourGagnerDefaut;
     }
 
     public List<Integer> getChoixHauteur() {
@@ -35,23 +46,11 @@ public class MParametres {
         return choixPourGagner;
     }
 
-    public Integer getHauteur() {
-        return hauteur;
-    }
-
-    public Integer getLargeur() {
-        return largeur;
-    }
-
-    public Integer getPourGagner() {
-        return pourGagner;
-    }
-
     public void setHauteur(Integer hauteur) {
         this.hauteur = hauteur;
     }
 
-    public void setLargeur(Integer largeur) {
+    public void setLargeur(Integer largeur){
         this.largeur = largeur;
     }
 
@@ -59,23 +58,30 @@ public class MParametres {
         this.pourGagner = pourGagner;
     }
 
-    private void genererListesDeChoix(){
+    @Override
+    public void aPartirObjetJson(Map<String, Object> objetJson) {
+       // hauteur = Integer.valueOf((String)entry.getValue);
 
+        for(Map.Entry<String, Object> entry : objetJson.entrySet()){
+            if(entry.getKey().equals(__hauteur))
+                hauteur = Integer.valueOf((String)entry.getValue());
+            else if (entry.getKey().equals(__largeur))
+                largeur = Integer.valueOf((String)entry.getValue());
+            else if (entry.getKey().equals(__pourGagner))
+                pourGagner = Integer.valueOf((String)entry.getValue());
+
+
+        }
     }
 
-    private List<Integer> genererListeChoix(int min, int max){
-        return null;
-    }
+    @Override
+    public Map<String, Object> enObjetJson() {
+        Map<String, Object> lesInfos = new HashMap<>();
 
-    private void genererListeChoixHauteur(){
+        lesInfos.put(__hauteur, hauteur.toString());
+        lesInfos.put(__largeur, largeur.toString());
+        lesInfos.put(__pourGagner, pourGagner.toString());
 
-    }
-
-    private void genererListeChoixLargeur(){
-
-    }
-
-    private void genererListeChoixPourGagner(){
-
+        return lesInfos;
     }
 }

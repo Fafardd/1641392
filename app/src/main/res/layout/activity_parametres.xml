@@ -44,34 +44,37 @@
 
     <Spinner
         android:id="@+id/hauteurSpinner"
-        android:layout_width="86dp"
+        android:layout_width="115dp"
         android:layout_height="52dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.946"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.308" />
+        app:layout_constraintVertical_bias="0.308"
+        tools:layout_editor_absoluteX="253dp" />
 
     <Spinner
         android:id="@+id/largeurSpinner"
-        android:layout_width="80dp"
+        android:layout_width="115dp"
         android:layout_height="45dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="253dp" />
 
     <Spinner
         android:id="@+id/pourGagnerSpinner"
-        android:layout_width="84dp"
+        android:layout_width="110dp"
         android:layout_height="51dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.96"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.705" />
+        app:layout_constraintVertical_bias="0.705"
+        tools:layout_editor_absoluteX="262dp" />
 
 </ca.cours5b5.kevinfafard.vues.VParametres>

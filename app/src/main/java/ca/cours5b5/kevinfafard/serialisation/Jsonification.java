@@ -9,19 +9,14 @@ public class Jsonification {
 
     private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public static <T extends Serialisable> T aPartirJson(Class<T> classeAImplanter, String json){
-        return null;
+    public static Map<String, Object> enObjetJson(String json){
+        Map<String, Object> objetJson = gson.fromJson(json, Map.class);
+
+        return objetJson;
     }
 
-    public static String enJson(Serialisable obj){
-        return null;
-    }
-
-    private static <T extends Serialisable> T aPartirJson(Serialisable obj, String json){
-        return null;
-    }
-
-    private static <T extends Serialisable> T aPartirObjetJson(Serialisable obj, Map<String, Object> objetJson){
-        return null;
+    public static String enChaine(Map<String, Object> objetJson){
+        String chaineJson = gson.toJson(objetJson);
+        return chaineJson;
     }
 }

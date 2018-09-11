@@ -5,7 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.Map;
+
 import ca.cours5b5.kevinfafard.R;
+import ca.cours5b5.kevinfafard.modeles.MParametres;
+import ca.cours5b5.kevinfafard.modeles.Modele;
+import ca.cours5b5.kevinfafard.serialisation.Jsonification;
 
 public class AParametres extends AppCompatActivity {
 
@@ -26,7 +31,24 @@ public class AParametres extends AppCompatActivity {
             Log.d("MonEtiquette",this.getResources().getString(R.string.LANGUAGE) + " portrait");
         }
 
+        if(savedInstanceState != null){
 
+            restaurerParametre(savedInstanceState);
+
+        }
+
+
+    }
+
+    private void restaurerParametre(Bundle savedInstanceState) {
+        String json = savedInstanceState.getString("MParametre");
+
+        Map<String, Object> objetJson = Jsonification.enObjetJson(json);
+
+        MParametres.instance.aPartirObjetJson(objetJson);
+
+        Log.d("Atelier5", this.getClass().getSimpleName() + "::restaurerParametre, cle: MParametre");
+        Log.d("Atelier5", this.getClass().getSimpleName() + "::restaurerParametre" + json);
     }
 
     @Override
@@ -44,7 +66,21 @@ public class AParametres extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
-        outState.putInt("MaCle",10);
+
+
+        sauvegarderParametre(outState);
+    }
+
+    private void sauvegarderParametre(Bundle outState) {
+        Map<String, Object> objetJson = MParametres.instance.enObjetJson();
+
+        String json = Jsonification.enChaine(objetJson);
+
+        outState.putString("MParametre",json);
+
+
+        Log.d("Atelier5", this.getClass().getSimpleName() + "::sauvegarderParametre, cle: MParametre");
+        Log.d("Atelier5", this.getClass().getSimpleName() + "::sauvegarderParametre" + json);
     }
 
     @Override
