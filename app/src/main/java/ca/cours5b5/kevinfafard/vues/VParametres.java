@@ -18,7 +18,7 @@ import ca.cours5b5.kevinfafard.modeles.MParametres;
 public class VParametres extends ConstraintLayout implements Vue{
 
     static {
-        Log.d("Atelier4", VParametres.class.getSimpleName() + " :: static");
+        Log.d("Atelier04", VParametres.class.getSimpleName() + " :: static");
     }
     public VParametres(Context context){
         super(context);
@@ -47,24 +47,33 @@ public class VParametres extends ConstraintLayout implements Vue{
 
         ArrayAdapter<Integer> adapterHauteur = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
         hauteurSpinner.setAdapter(adapterHauteur);
-        for(int i = GConstantes.hauteurMin; i<=GConstantes.hauteurMax; i++){
+        /*for(int i = GConstantes.hauteurMin; i<=GConstantes.hauteurMax; i++){
             adapterHauteur.add(i);
-        }
+        }*/
+
+        adapterHauteur.addAll(MParametres.instance.getChoixHauteur());
+
         hauteurSpinner.setSelection(adapterHauteur.getPosition(MParametres.instance.hauteur));
 
 
         ArrayAdapter<Integer> adapterLargeur = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
         largeurSpinner.setAdapter(adapterLargeur);
-        for(int i=GConstantes.largeurMin; i<=GConstantes.hauteurMax;i++){
+        /*for(int i=GConstantes.largeurMin; i<=GConstantes.hauteurMax;i++){
             adapterLargeur.add(i);
-        }
+        }*/
+
+        adapterLargeur.addAll(MParametres.instance.getChoixHauteur());
+
         largeurSpinner.setSelection(adapterLargeur.getPosition(MParametres.instance.largeur));
 
         ArrayAdapter<Integer> adapterPourGagner = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
         pourGagnerSpinner.setAdapter(adapterPourGagner);
-        for(int i=GConstantes.pourGagnerMin; i<=GConstantes.pourGagnerMax;i++){
+        /*for(int i=GConstantes.pourGagnerMin; i<=GConstantes.pourGagnerMax;i++){
             adapterPourGagner.add(i);
-        }
+        }*/
+
+        adapterPourGagner.addAll(MParametres.instance.getChoixHauteur());
+
         pourGagnerSpinner.setSelection(adapterPourGagner.getPosition(MParametres.instance.pourGagner));
 
 

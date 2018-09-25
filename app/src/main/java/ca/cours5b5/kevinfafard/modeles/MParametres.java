@@ -1,5 +1,6 @@
 package ca.cours5b5.kevinfafard.modeles;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,25 @@ public class MParametres extends Modele{
         hauteur = GConstantes.hauteurDefaut;
         largeur = GConstantes.largeurDefaut;
         pourGagner = GConstantes.pourGagnerDefaut;
+
+        choixHauteur = new ArrayList<Integer>();
+        choixLargeur = new ArrayList<Integer>();
+        choixPourGagner = new ArrayList<Integer>();
+        genererListesDeChoix();
+    }
+
+    private void genererListesDeChoix() {
+        choixHauteur = genererListeChoix(GConstantes.hauteurMin,GConstantes.hauteurMax);
+        choixLargeur = genererListeChoix(GConstantes.largeurMin,GConstantes.largeurMax);
+        choixPourGagner = genererListeChoix(GConstantes.pourGagnerMin, GConstantes.pourGagnerMax);
+    }
+
+    private List<Integer> genererListeChoix(int min, int max) {
+        List<Integer> temp = new ArrayList<Integer>();
+        for(int i = min;i<=max;i++){
+            temp.add(i);
+        }
+        return temp;
     }
 
     public List<Integer> getChoixHauteur() {

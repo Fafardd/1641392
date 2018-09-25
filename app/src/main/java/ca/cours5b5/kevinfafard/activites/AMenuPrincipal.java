@@ -11,6 +11,7 @@ import ca.cours5b5.kevinfafard.R;
 public class AMenuPrincipal extends AppCompatActivity {
 
     static{
+
         Log.d("Atelier04", AMenuPrincipal.class.getSimpleName() + ":: static");
     }
     @Override

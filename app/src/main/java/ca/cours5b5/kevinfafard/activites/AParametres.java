@@ -19,7 +19,9 @@ public class AParametres extends AppCompatActivity {
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //MParametres p = new MParametres();
 
+        //Log.d("test11",p.getClass().getSimpleName());
         Log.d("Atelier04", this.getClass().getSimpleName() + ":: onCreate");
         super.onCreate(savedInstanceState);
         Log.d("MonEtiquette",this.getResources().getString(R.string.LANGUAGE));
@@ -41,6 +43,7 @@ public class AParametres extends AppCompatActivity {
     }
 
     private void restaurerParametre(Bundle savedInstanceState) {
+        Log.d("Atelier04", "Restore");
         String json = savedInstanceState.getString("MParametre");
 
         Map<String, Object> objetJson = Jsonification.enObjetJson(json);
@@ -65,6 +68,7 @@ public class AParametres extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState){
+        Log.d("Atelier04", "onsaveinstance");
         super.onSaveInstanceState(outState);
 
 
