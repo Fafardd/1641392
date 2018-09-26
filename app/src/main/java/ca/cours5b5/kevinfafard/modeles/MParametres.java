@@ -13,6 +13,10 @@ public class MParametres extends Modele{
     public static MParametres instance = new MParametres();
 
     @AttributSerialisable
+    public MParametresPartie parametresPartie;
+    private String __parametresPartie = "parametresPartie";
+
+    @AttributSerialisable
     public Integer hauteur;
     private  final String __hauteur = "hauteur";
 
@@ -64,6 +68,10 @@ public class MParametres extends Modele{
 
     public List<Integer> getChoixPourGagner() {
         return choixPourGagner;
+    }
+
+    public MParametresPartie getParametresPartie() {
+        return parametresPartie;
     }
 
     public void setHauteur(Integer hauteur) {

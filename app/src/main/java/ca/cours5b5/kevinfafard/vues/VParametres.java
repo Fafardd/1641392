@@ -15,7 +15,7 @@ import ca.cours5b5.kevinfafard.R;
 import ca.cours5b5.kevinfafard.global.GConstantes;
 import ca.cours5b5.kevinfafard.modeles.MParametres;
 
-public class VParametres extends ConstraintLayout implements Vue{
+public class VParametres extends Vue{{}
 
     static {
         Log.d("Atelier04", VParametres.class.getSimpleName() + " :: static");

@@ -12,7 +12,7 @@ import ca.cours5b5.kevinfafard.activites.AMenuPrincipal;
 import ca.cours5b5.kevinfafard.activites.AParametres;
 
 
-public class VMenuPrincipal extends ConstraintLayout implements Vue{
+public class VMenuPrincipal extends Vue{
 
     static {
         Log.d("Atelier04", VMenuPrincipal.class.getSimpleName() + ":: static");
