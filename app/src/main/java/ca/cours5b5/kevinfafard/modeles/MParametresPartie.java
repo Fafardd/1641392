@@ -1,7 +1,9 @@
 package ca.cours5b5.kevinfafard.modeles;
 
+import java.util.HashMap;
 import java.util.Map;
 
+import ca.cours5b5.kevinfafard.exceptions.ErreurDeSerialisation;
 import ca.cours5b5.kevinfafard.serialisation.AttributSerialisable;
 
 public class MParametresPartie extends Modele{
@@ -19,7 +21,27 @@ public class MParametresPartie extends Modele{
     protected final String __pourGagner = "pourGagner";
 
     public static MParametresPartie aPartirMParametres(MParametres mParametres){
-        return null;
+
+        MParametresPartie mParametresPartie = new MParametresPartie();
+
+        mParametresPartie.setHauteur(mParametres.hauteur);
+        mParametresPartie.setLargeur(mParametres.largeur);
+        mParametresPartie.setPourGagner(mParametres.pourGagner);
+
+
+        return mParametresPartie;
+    }
+
+    public MParametresPartie cloner(){
+
+        MParametresPartie mParametresPartie = new MParametresPartie();
+
+        mParametresPartie.setHauteur(this.hauteur);
+        mParametresPartie.setLargeur(this.largeur);
+        mParametresPartie.setPourGagner(this.pourGagner);
+
+
+        return mParametresPartie;
     }
 
     public MParametresPartie(){
@@ -51,12 +73,28 @@ public class MParametresPartie extends Modele{
     }
 
     @Override
-    public void aPartirObjetJson(Map<String, Object> objetJson) {
+    public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurDeSerialisation{
 
+        for(Map.Entry<String, Object> entry : objetJson.entrySet()){
+            if(entry.getKey().equals(__hauteur))
+                hauteur = Integer.valueOf((String)entry.getValue());
+            else if (entry.getKey().equals(__largeur))
+                largeur = Integer.valueOf((String)entry.getValue());
+            else if (entry.getKey().equals(__pourGagner))
+                pourGagner = Integer.valueOf((String)entry.getValue());
+
+
+        }
     }
 
     @Override
-    public Map<String, Object> enObjetJson() {
-        return null;
+    public Map<String, Object> enObjetJson() throws ErreurDeSerialisation{
+        Map<String, Object> lesInfos = new HashMap<>();
+
+        lesInfos.put(__hauteur, hauteur.toString());
+        lesInfos.put(__largeur, largeur.toString());
+        lesInfos.put(__pourGagner, pourGagner.toString());
+
+        return lesInfos;
     }
 }

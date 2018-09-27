@@ -19,5 +19,6 @@ public class ControleurObservation {
     public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur){
 
 
+
     }
 }

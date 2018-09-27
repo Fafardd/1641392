@@ -36,6 +36,11 @@ public class AMenuPrincipal extends AppCompatActivity {
         startActivity(monIntention);
     }
 
+    public void sendMessage2(View view){
+        Intent monIntention = new Intent(this, APartie.class);
+        startActivity(monIntention);
+    }
+
     @Override
     protected void onResume(){
         super.onResume();
