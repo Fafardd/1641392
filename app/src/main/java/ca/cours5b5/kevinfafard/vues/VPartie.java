@@ -2,7 +2,9 @@ package ca.cours5b5.kevinfafard.vues;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 
+import ca.cours5b5.kevinfafard.modeles.MParametres;
 import ca.cours5b5.kevinfafard.modeles.MPartie;
 import ca.cours5b5.kevinfafard.modeles.Modele;
 
@@ -25,6 +27,8 @@ public class VPartie extends Vue{
     protected void onFinishInflate() {
 
         super.onFinishInflate();
+        Log.d("test11", "gfdsgfdsgfdsgdfs");
+        observerPartie();
     }
 
     private void initialiser(){
@@ -33,9 +37,11 @@ public class VPartie extends Vue{
 
     private void observerPartie(){
 
+        MPartie partie = new MPartie(MParametres.instance.parametresPartie);
     }
 
     private MPartie getPartie(Modele modele){
+
         return null;
     }
 

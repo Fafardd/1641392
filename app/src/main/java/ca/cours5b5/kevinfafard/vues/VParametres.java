@@ -53,7 +53,7 @@ public class VParametres extends Vue{{}
 
         adapterHauteur.addAll(MParametres.instance.getChoixHauteur());
 
-        hauteurSpinner.setSelection(adapterHauteur.getPosition(MParametres.instance.hauteur));
+        hauteurSpinner.setSelection(adapterHauteur.getPosition(MParametres.instance.parametresPartie.hauteur));
 
 
         ArrayAdapter<Integer> adapterLargeur = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
@@ -64,7 +64,7 @@ public class VParametres extends Vue{{}
 
         adapterLargeur.addAll(MParametres.instance.getChoixHauteur());
 
-        largeurSpinner.setSelection(adapterLargeur.getPosition(MParametres.instance.largeur));
+        largeurSpinner.setSelection(adapterLargeur.getPosition(MParametres.instance.parametresPartie.largeur));
 
         ArrayAdapter<Integer> adapterPourGagner = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
         pourGagnerSpinner.setAdapter(adapterPourGagner);
@@ -74,7 +74,7 @@ public class VParametres extends Vue{{}
 
         adapterPourGagner.addAll(MParametres.instance.getChoixHauteur());
 
-        pourGagnerSpinner.setSelection(adapterPourGagner.getPosition(MParametres.instance.pourGagner));
+        pourGagnerSpinner.setSelection(adapterPourGagner.getPosition(MParametres.instance.parametresPartie.pourGagner));
 
 
 
@@ -82,7 +82,7 @@ public class VParametres extends Vue{{}
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Integer choix = (Integer) adapterView.getAdapter().getItem(i);
-                MParametres.instance.setHauteur(choix);
+                MParametres.instance.parametresPartie.setHauteur(choix);
             }
 
             @Override
@@ -95,7 +95,7 @@ public class VParametres extends Vue{{}
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Integer choix = (Integer) adapterView.getAdapter().getItem(i);
-                MParametres.instance.setLargeur(choix);
+                MParametres.instance.parametresPartie.setLargeur(choix);
             }
 
             @Override
@@ -108,7 +108,7 @@ public class VParametres extends Vue{{}
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Integer choix = (Integer) adapterView.getAdapter().getItem(i);
-                MParametres.instance.setPourGagner(choix);
+                MParametres.instance.parametresPartie.setPourGagner(choix);
             }
 
             @Override

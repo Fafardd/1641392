@@ -1,5 +1,7 @@
 package ca.cours5b5.kevinfafard.modeles;
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,9 +26,10 @@ public class MParametresPartie extends Modele{
 
         MParametresPartie mParametresPartie = new MParametresPartie();
 
-        mParametresPartie.setHauteur(mParametres.hauteur);
-        mParametresPartie.setLargeur(mParametres.largeur);
-        mParametresPartie.setPourGagner(mParametres.pourGagner);
+        mParametresPartie.setHauteur(mParametres.parametresPartie.hauteur);
+        mParametresPartie.setLargeur(mParametres.parametresPartie.largeur);
+        mParametresPartie.setPourGagner(mParametres.parametresPartie.pourGagner);
+        Log.d("test22","4");
 
 
         return mParametresPartie;

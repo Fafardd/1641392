@@ -1,5 +1,7 @@
 package ca.cours5b5.kevinfafard.modeles;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +18,7 @@ public class MParametres extends Modele{
     public MParametresPartie parametresPartie;
     private String __parametresPartie = "parametresPartie";
 
-    @AttributSerialisable
+    /*@AttributSerialisable
     public Integer hauteur;
     private  final String __hauteur = "hauteur";
 
@@ -26,17 +28,19 @@ public class MParametres extends Modele{
 
     @AttributSerialisable
     public Integer pourGagner;
-    private  final String __pourGagner = "pourGagner";
+    private  final String __pourGagner = "pourGagner";*/
 
     private List<Integer> choixHauteur;
     private List<Integer> choixLargeur;
     private List<Integer> choixPourGagner;
 
     public MParametres(){
+        parametresPartie = new MParametresPartie();
         //MParametres instance = new MParametres();
-        hauteur = GConstantes.hauteurDefaut;
-        largeur = GConstantes.largeurDefaut;
-        pourGagner = GConstantes.pourGagnerDefaut;
+        parametresPartie.setHauteur(GConstantes.hauteurDefaut);
+        parametresPartie.setLargeur (GConstantes.largeurDefaut);
+        parametresPartie.setPourGagner(GConstantes.pourGagnerDefaut);
+        Log.d("test22","1");
 
         choixHauteur = new ArrayList<Integer>();
         choixLargeur = new ArrayList<Integer>();
@@ -74,7 +78,7 @@ public class MParametres extends Modele{
         return parametresPartie;
     }
 
-    public void setHauteur(Integer hauteur) {
+    /*public void setHauteur(Integer hauteur) {
         this.hauteur = hauteur;
     }
 
@@ -84,32 +88,33 @@ public class MParametres extends Modele{
 
     public void setPourGagner(Integer pourGagner) {
         this.pourGagner = pourGagner;
-    }
+    }*/
 
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) {
        // hauteur = Integer.valueOf((String)entry.getValue);
 
         for(Map.Entry<String, Object> entry : objetJson.entrySet()){
-            if(entry.getKey().equals(__hauteur))
-                hauteur = Integer.valueOf((String)entry.getValue());
-            else if (entry.getKey().equals(__largeur))
-                largeur = Integer.valueOf((String)entry.getValue());
-            else if (entry.getKey().equals(__pourGagner))
-                pourGagner = Integer.valueOf((String)entry.getValue());
+            if(entry.getKey().equals(parametresPartie.__hauteur))
+                parametresPartie.hauteur = Integer.valueOf((String)entry.getValue());
+            else if (entry.getKey().equals(parametresPartie.__largeur))
+                parametresPartie.largeur = Integer.valueOf((String)entry.getValue());
+            else if (entry.getKey().equals(parametresPartie.__pourGagner))
+                parametresPartie.pourGagner = Integer.valueOf((String)entry.getValue());
 
 
         }
+        Log.d("test22","2");
     }
 
     @Override
     public Map<String, Object> enObjetJson() {
         Map<String, Object> lesInfos = new HashMap<>();
 
-        lesInfos.put(__hauteur, hauteur.toString());
-        lesInfos.put(__largeur, largeur.toString());
-        lesInfos.put(__pourGagner, pourGagner.toString());
-
+        lesInfos.put(parametresPartie.__hauteur, parametresPartie.hauteur.toString());
+        lesInfos.put(parametresPartie.__largeur, parametresPartie.largeur.toString());
+        lesInfos.put(parametresPartie.__pourGagner, parametresPartie.pourGagner.toString());
+        Log.d("test22","3");
         return lesInfos;
     }
 }
