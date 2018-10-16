@@ -18,7 +18,7 @@ public class MPartie extends Modele{
 
 
 
-        return MParametres.instance.parametresPartie;
+        return parametres;
     }
 
     @Override

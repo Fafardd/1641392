@@ -32,16 +32,18 @@ public class VGrille extends GridLayout{
 
     };
 
-    private List<Colonne> colonnesDeCases = new ArrayList<>();
+    //private List<Colonne> colonnesDeCases = new ArrayList<>();
 
-    private List<VEntete> entetes = new ArrayList<>();
+    private List<VEntete> entetes;
+
+    private VCase[][] lesCases;
 
     @Override
     protected void onFinishInflate() {
 
         Log.d("test11", "fdfdsafds");
         super.onFinishInflate();
-        creerGrille(MParametres.instance.parametresPartie.hauteur,MParametres.instance.parametresPartie.largeur);
+        //creerGrille(MParametres.instance.parametresPartie.hauteur,MParametres.instance.parametresPartie.largeur);
         /*ajouterEnTetes(6);
         ajouterCases(6,6);*/
 
@@ -61,11 +63,12 @@ public class VGrille extends GridLayout{
     }
 
     private void ajouterEnTetes(int largeur){
+        entetes = new ArrayList<>();
         for(int i=0; i<largeur;i++){
             Log.d("test11", "1");
             VEntete vEntete = new VEntete(this.getContext(),i);
             Log.d("test11", "2");
-            //entetes.add(vEntete);
+            entetes.add(vEntete);
             Log.d("test11", "3");
             addView(vEntete, getMiseEnPageEntete(i));
             Log.d("test11", "4");
@@ -74,11 +77,13 @@ public class VGrille extends GridLayout{
 
     }
     private void ajouterCases(int hauteur, int largeur){
+        lesCases = new VCase[hauteur][largeur];
         for(int i=0; i<hauteur; i++){
             for(int j=0; j<largeur; j++){
                 //Log.d("test11", "1");
                 VCase vCase = new VCase(this.getContext(), i,j);
                 //Log.d("test11", "2");
+                lesCases[i][j] = vCase;
                 //colonnesDeCases.add(vCase);
                 addView(vCase, getMiseEnPageCase(hauteur - i,j));
             }
