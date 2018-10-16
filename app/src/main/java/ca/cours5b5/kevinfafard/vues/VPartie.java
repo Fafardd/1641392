@@ -48,6 +48,7 @@ public class VPartie extends Vue{
             @Override
             public void reagirChangementAuModele(Modele modele) {
                 afficherParametres((MPartie) modele);
+                //On veut rafraichir la grille
             }
             @Override
             public void reagirNouveauModele(Modele modele) {
@@ -71,5 +72,9 @@ public class VPartie extends Vue{
         int hauteur = mPartie.getParametres().getHauteur();
         int largeur = mPartie.getParametres().getLargeur();
         grille.creerGrille(hauteur,largeur);
+    }
+
+    public void miseAJourGrille(MPartie partie){
+
     }
 }

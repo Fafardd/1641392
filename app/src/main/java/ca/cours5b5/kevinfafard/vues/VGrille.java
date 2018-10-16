@@ -9,6 +9,8 @@ import android.widget.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.cours5b5.kevinfafard.global.GCouleur;
+import ca.cours5b5.kevinfafard.modeles.MGrille;
 import ca.cours5b5.kevinfafard.modeles.MParametres;
 
 public class VGrille extends GridLayout{
@@ -72,6 +74,7 @@ public class VGrille extends GridLayout{
             Log.d("test11", "3");
             addView(vEntete, getMiseEnPageEntete(i));
             Log.d("test11", "4");
+            //Pour chaque en-tete, on veut installer le listener
         }
 
 
@@ -124,5 +127,25 @@ public class VGrille extends GridLayout{
         mesParams.setGravity(Gravity.FILL);
 
         return mesParams;
+    }
+
+    private void initialiserTableauDeCases(int hauteur, int largeur){
+
+    }
+
+    private void demanderActionEntete(){
+
+    }
+
+    private void installerListenerEntete(VEntete entete, final int colonne){
+
+    }
+
+    void afficherJetons(MGrille grille){
+
+    }
+
+    private void afficherJeton(int colonne, int rangee, GCouleur jeton){
+
     }
 }
