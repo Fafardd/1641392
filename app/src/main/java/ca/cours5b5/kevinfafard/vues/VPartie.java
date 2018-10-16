@@ -47,6 +47,7 @@ public class VPartie extends Vue{
         ControleurObservation.observerModele(name, new ListenerObservateur() {
             @Override
             public void reagirChangementAuModele(Modele modele) {
+                Log.d("Atelier07", "VPartie.reagirChangementAuModele");
                 afficherParametres((MPartie) modele);
                 miseAJourGrille((MPartie) modele);
             }

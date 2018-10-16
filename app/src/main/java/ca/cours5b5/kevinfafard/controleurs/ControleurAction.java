@@ -1,5 +1,7 @@
 package ca.cours5b5.kevinfafard.controleurs;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,12 +35,14 @@ public class ControleurAction {
         executerActionsExecutables();
     }
     static void executerDesQuePossible(Action action){
+        Log.d("Atelier07", "ControleurAction.executerDesQuePossible");
         fileAttenteExecution.add(action);
         executerActionsExecutables();
 
     }
 
     private static void executerActionsExecutables(){
+        Log.d("Atelier07", "ControleurAction.executerActionsExecutables");
         for (Action action: fileAttenteExecution
              ) {
 
@@ -61,6 +65,7 @@ public class ControleurAction {
     }
 
     private static void lancerObservationSiApplicable(Action action){
+        Log.d("Atelier07", "ControleurAction.lancerObservationSiApplicable");
         if(action.fournisseur instanceof Modele){
             ControleurObservation.lancerObservation((Modele)action.fournisseur);
         }

@@ -151,6 +151,7 @@ public class VGrille extends GridLayout{
         entete.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("Atelier07", "VGrille.onClick");
                 actionEnTete.setArguments(colonne);
                 actionEnTete.executerDesQuePossible();
             }
