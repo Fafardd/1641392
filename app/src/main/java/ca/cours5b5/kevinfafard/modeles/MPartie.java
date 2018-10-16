@@ -1,10 +1,12 @@
 package ca.cours5b5.kevinfafard.modeles;
 
+import java.util.List;
 import java.util.Map;
 
 import ca.cours5b5.kevinfafard.controleurs.ControleurAction;
 import ca.cours5b5.kevinfafard.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.kevinfafard.controleurs.interfaces.ListenerFournisseur;
+import ca.cours5b5.kevinfafard.exceptions.ErreurDeSerialisation;
 import ca.cours5b5.kevinfafard.global.GCommande;
 import ca.cours5b5.kevinfafard.global.GCouleur;
 import ca.cours5b5.kevinfafard.serialisation.AttributSerialisable;
@@ -13,6 +15,10 @@ public class MPartie extends Modele implements Fournisseur{
 
     private MGrille grille;
     private GCouleur couleurCourante;
+
+    @AttributSerialisable
+    public List<Integer> coups;
+    private final String __coups = "coups";
 
     @AttributSerialisable
     public MParametresPartie parametres;
@@ -33,8 +39,17 @@ public class MPartie extends Modele implements Fournisseur{
     }
 
     @Override
-    public void aPartirObjetJson(Map<String, Object> objetJson) {
-        //rien a faire
+    public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurDeSerialisation{
+        this.parametres = parametres;
+
+        grille = new MGrille(parametres.getLargeur());
+
+        initialiserCouleurCourante();
+
+        for (Integer coups : coups
+                ) {jouerCoup(coups);
+
+        }
     }
 
     @Override

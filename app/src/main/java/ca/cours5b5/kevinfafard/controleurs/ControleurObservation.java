@@ -13,7 +13,7 @@ import ca.cours5b5.kevinfafard.modeles.Modele;
 public class ControleurObservation {
 
     private static Map<Modele, ListenerObservateur> observations;
-    private static MPartie partie;
+    public static MPartie partie;
 
     static{
         observations=new HashMap<>();
