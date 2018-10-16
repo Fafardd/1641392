@@ -21,7 +21,7 @@ public class VEntete extends AppCompatButton {
 
     public VEntete(Context context, int colonne){
         super(context);
-        setText(String.valueOf(colonne));
+        setText(String.valueOf(colonne) + "\n" + "\u2193");
 
     }
 }

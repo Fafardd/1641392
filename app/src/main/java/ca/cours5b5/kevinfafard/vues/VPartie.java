@@ -48,7 +48,7 @@ public class VPartie extends Vue{
             @Override
             public void reagirChangementAuModele(Modele modele) {
                 afficherParametres((MPartie) modele);
-                //On veut rafraichir la grille
+                miseAJourGrille((MPartie) modele);
             }
             @Override
             public void reagirNouveauModele(Modele modele) {
@@ -75,6 +75,6 @@ public class VPartie extends Vue{
     }
 
     public void miseAJourGrille(MPartie partie){
-
+        grille.afficherJetons(partie.getGrille());
     }
 }

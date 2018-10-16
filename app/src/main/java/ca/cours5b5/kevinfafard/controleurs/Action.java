@@ -11,11 +11,11 @@ public class Action {
     Object[] args;
 
     public void setArguments(Object... args){
-        args = args;
+        this.args = args;
     }
 
     public void executerDesQuePossible(){
-        //ControleurAction
+        ControleurAction.executerDesQuePossible(this);
     }
 
     Action cloner(){

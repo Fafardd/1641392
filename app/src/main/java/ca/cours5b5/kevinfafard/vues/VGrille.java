@@ -4,12 +4,17 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.GridLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.cours5b5.kevinfafard.controleurs.Action;
+import ca.cours5b5.kevinfafard.controleurs.ControleurAction;
+import ca.cours5b5.kevinfafard.global.GCommande;
 import ca.cours5b5.kevinfafard.global.GCouleur;
+import ca.cours5b5.kevinfafard.modeles.MColonne;
 import ca.cours5b5.kevinfafard.modeles.MGrille;
 import ca.cours5b5.kevinfafard.modeles.MParametres;
 
@@ -39,6 +44,8 @@ public class VGrille extends GridLayout{
     private List<VEntete> entetes;
 
     private VCase[][] lesCases;
+
+    private Action actionEnTete;
 
     @Override
     protected void onFinishInflate() {
@@ -75,12 +82,15 @@ public class VGrille extends GridLayout{
             addView(vEntete, getMiseEnPageEntete(i));
             Log.d("test11", "4");
             //Pour chaque en-tete, on veut installer le listener
+            installerListenerEntete(vEntete, i);
         }
+
+        demanderActionEntete();
 
 
     }
     private void ajouterCases(int hauteur, int largeur){
-        lesCases = new VCase[hauteur][largeur];
+        initialiserTableauDeCases(hauteur, largeur);
         for(int i=0; i<hauteur; i++){
             for(int j=0; j<largeur; j++){
                 //Log.d("test11", "1");
@@ -130,22 +140,40 @@ public class VGrille extends GridLayout{
     }
 
     private void initialiserTableauDeCases(int hauteur, int largeur){
-
+        lesCases = new VCase[hauteur][largeur];
     }
 
     private void demanderActionEntete(){
-
+            actionEnTete = ControleurAction.demanderAction(GCommande.JOUER_COUP_ICI);
     }
 
     private void installerListenerEntete(VEntete entete, final int colonne){
+        entete.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actionEnTete.setArguments(colonne);
+                actionEnTete.executerDesQuePossible();
+            }
+        });
 
     }
 
     void afficherJetons(MGrille grille){
+        List<MColonne> listeColonne = grille.getColonnes();
+
+        for(int colonne=0;colonne<listeColonne.size();++colonne){
+
+            MColonne colonneActuel = listeColonne.get(colonne);
+
+            for(int rangee=0;rangee<colonneActuel.getJetons().size();++rangee){
+                afficherJeton(colonne,rangee,colonneActuel.getJetons().get(rangee));
+
+            }
+        }
 
     }
 
     private void afficherJeton(int colonne, int rangee, GCouleur jeton){
-
+        lesCases[rangee][colonne].afficherJeton(jeton);
     }
 }

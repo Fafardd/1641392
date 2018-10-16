@@ -1,6 +1,7 @@
 package ca.cours5b5.kevinfafard.vues;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
 
@@ -28,6 +29,10 @@ public class VCase extends AppCompatButton{
     }
 
     public void afficherJeton(GCouleur jeton){
-        //setBackgroundColor();
+        if(jeton.equals(GCouleur.JAUNE)){
+            this.setBackgroundColor(Color.YELLOW);
+        } else if(jeton.equals(GCouleur.ROUGE)){
+            this.setBackgroundColor(Color.RED);
+        }
     }
 }
