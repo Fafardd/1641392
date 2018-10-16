@@ -30,7 +30,7 @@ public class VPartie extends Vue{
     protected void onFinishInflate() {
 
         super.onFinishInflate();
-        Log.d("test11", "gfdsgfdsgfdsgdfs");
+        Log.d("Atelier06", "VPartie::OnFinishInflate");
         initialiser();
         observerPartie();
     }
@@ -40,7 +40,7 @@ public class VPartie extends Vue{
     }
 
     private void observerPartie(){
-
+        Log.d("Atelier06", "VPartie::ObserverPartie");
         //MPartie partie = new MPartie(MParametres.instance.parametresPartie);
         String name = MPartie.class.getSimpleName();
 
