@@ -1,47 +1,94 @@
 package ca.cours5b5.kevinfafard.vues;
+
 import android.content.Context;
-import android.content.Intent;
-import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import ca.cours5b5.kevinfafard.R;
-import ca.cours5b5.kevinfafard.activites.AMenuPrincipal;
-import ca.cours5b5.kevinfafard.activites.AParametres;
+import ca.cours5b5.kevinfafard.controleurs.Action;
+import ca.cours5b5.kevinfafard.controleurs.ControleurAction;
+import ca.cours5b5.kevinfafard.global.GCommande;
 
 
-public class VMenuPrincipal extends Vue{
+public class VMenuPrincipal extends Vue {
 
-    static {
-        Log.d("Atelier04", VMenuPrincipal.class.getSimpleName() + ":: static");
-    }
-    public VMenuPrincipal(Context context){
+    private Button boutonParametres;
+    private Action actionParametres;
+
+    private Button boutonPartie;
+    private Action actionPartie;
+
+    public VMenuPrincipal(Context context) {
         super(context);
     }
 
-    public VMenuPrincipal(Context context, AttributeSet attrs){
+    public VMenuPrincipal(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
-    public VMenuPrincipal(Context context, AttributeSet attrs, int defStyleAttr){
+
+    public VMenuPrincipal(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
-    protected void onFinishInflate() {
+    protected void onFinishInflate(){
         super.onFinishInflate();
-        Log.d("Atelier04", this.getClass().getSimpleName() + ":: onFinishInflate");
-        Button boutonParametres = this.findViewById(R.id.bouton_parametres);
+
+        recupererControles();
+
+        demanderActions();
+
+        installerListeners();
+
+    }
 
 
+    private void recupererControles() {
 
-        boutonParametres.setOnClickListener(new View.OnClickListener(){
+        boutonParametres = findViewById(R.id.bouton_parametres);
 
+        boutonPartie = findViewById(R.id.bouton_partie);
+
+    }
+
+    private void demanderActions() {
+
+        actionParametres = ControleurAction.demanderAction(GCommande.OUVRIR_MENU_PARAMETRES);
+
+        actionPartie = ControleurAction.demanderAction(GCommande.DEMARRER_PARTIE);
+
+    }
+
+
+    private void installerListeners() {
+
+        installerListenerParametres();
+
+        installerListenerPartie();
+
+    }
+
+    private void installerListenerPartie() {
+
+        boutonPartie.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                actionPartie.executerDesQuePossible();
             }
         });
+
     }
+
+    private void installerListenerParametres() {
+
+        boutonParametres.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actionParametres.executerDesQuePossible();
+            }
+        });
+
+    }
+
 }

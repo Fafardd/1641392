@@ -2,66 +2,71 @@ package ca.cours5b5.kevinfafard.activites;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
 
 import ca.cours5b5.kevinfafard.R;
+import ca.cours5b5.kevinfafard.controleurs.ControleurAction;
+import ca.cours5b5.kevinfafard.controleurs.interfaces.Fournisseur;
+import ca.cours5b5.kevinfafard.controleurs.interfaces.ListenerFournisseur;
+import ca.cours5b5.kevinfafard.global.GCommande;
 
-public class AMenuPrincipal extends AppCompatActivity {
+public class AMenuPrincipal extends Activite implements Fournisseur {
 
-    static{
-
-        Log.d("Atelier04", AMenuPrincipal.class.getSimpleName() + ":: static");
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("Atelier04", this.getClass().getSimpleName() + ":: onCreate");
         super.onCreate(savedInstanceState);
-        Log.d("MonEtiquette",this.getResources().getString(R.string.LANGUAGE));
-        setContentView(R.layout.activity_menuprincipal);
+        setContentView(R.layout.activity_menu_principal);
 
-        if(this.getResources().getBoolean(R.bool.est_paysage)){
-            Log.d("MonEtiquette",this.getResources().getString(R.string.LANGUAGE) + " paysage");
-        } else {
-            Log.d("MonEtiquette",this.getResources().getString(R.string.LANGUAGE) + " portrait");
-        }
+        fournirActions();
 
-        //Intent monIntention = new Intent(this, AParametres.class);
-        //startActivity(monIntention);
     }
 
-    public void sendMessage(View view){
-        Intent monIntention = new Intent(this, AParametres.class);
-        startActivity(monIntention);
+    private void fournirActions() {
+
+        fournirActionOuvrirMenuParametres();
+
+        fournirActionDemarrerPartie();
     }
 
-    public void sendMessage2(View view){
-        Intent monIntention = new Intent(this, APartie.class);
-        startActivity(monIntention);
+    private void fournirActionOuvrirMenuParametres() {
+
+        ControleurAction.fournirAction(this,
+                GCommande.OUVRIR_MENU_PARAMETRES,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+
+                        transitionParametres();
+
+                    }
+                });
     }
 
-    @Override
-    protected void onResume(){
-        super.onResume();
-        Log.d("Atelier04", this.getClass().getSimpleName() + ":: onResume");
+    private void fournirActionDemarrerPartie() {
+
+        ControleurAction.fournirAction(this,
+                GCommande.DEMARRER_PARTIE,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+
+                        transitionPartie();
+
+                    }
+                });
     }
 
-    @Override
-    protected void onPause(){
-        super.onPause();
-        Log.d("Atelier04", this.getClass().getSimpleName() + ":: onPause");
+    private void transitionParametres(){
+
+        Intent intentionParametres = new Intent(this, AParametres.class);
+        startActivity(intentionParametres);
+
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState){
-        super.onSaveInstanceState(outState);
-        outState.putInt("MaCle",10);
+    private void transitionPartie(){
+
+        Intent intentionParametres = new Intent(this, APartie.class);
+        startActivity(intentionParametres);
+
     }
 
-    @Override
-    protected void onDestroy(){
-        super.onDestroy();
-        Log.d("Atelier04", this.getClass().getSimpleName() + ":: onDestroy");
-    }
 }

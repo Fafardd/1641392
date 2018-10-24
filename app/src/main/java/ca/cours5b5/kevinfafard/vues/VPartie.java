@@ -7,17 +7,20 @@ import android.util.Log;
 import ca.cours5b5.kevinfafard.R;
 import ca.cours5b5.kevinfafard.controleurs.ControleurObservation;
 import ca.cours5b5.kevinfafard.controleurs.interfaces.ListenerObservateur;
-import ca.cours5b5.kevinfafard.modeles.MParametres;
+import ca.cours5b5.kevinfafard.exceptions.ErreurObservation;
+import ca.cours5b5.kevinfafard.modeles.MParametresPartie;
 import ca.cours5b5.kevinfafard.modeles.MPartie;
 import ca.cours5b5.kevinfafard.modeles.Modele;
 
-public class VPartie extends Vue{
+
+public class VPartie extends Vue {
 
     private VGrille grille;
 
     public VPartie(Context context) {
         super(context);
     }
+
     public VPartie(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -28,54 +31,72 @@ public class VPartie extends Vue{
 
     @Override
     protected void onFinishInflate() {
-
         super.onFinishInflate();
-        Log.d("Atelier06", "VPartie::OnFinishInflate");
+
         initialiser();
+
         observerPartie();
-    }
-
-    private void initialiser(){
-        grille = this.findViewById(R.id.VGrille);
-    }
-
-    private void observerPartie(){
-        Log.d("Atelier06", "VPartie::ObserverPartie");
-        //MPartie partie = new MPartie(MParametres.instance.parametresPartie);
-        String name = MPartie.class.getSimpleName();
-
-        ControleurObservation.observerModele(name, new ListenerObservateur() {
-            @Override
-            public void reagirChangementAuModele(Modele modele) {
-                Log.d("Atelier07", "VPartie.reagirChangementAuModele");
-                afficherParametres((MPartie) modele);
-                miseAJourGrille((MPartie) modele);
-            }
-            @Override
-            public void reagirNouveauModele(Modele modele) {
-                Log.d("Atelier06", "VPartie::reagirNouveauModele");
-                super.reagirNouveauModele(modele);
-                MPartie partie = (MPartie) modele;
-
-                initialiserGrille(partie);
-            }
-        });
-    }
-    private void afficherParametres(MPartie partie){
 
     }
+
+    private void initialiser() {
+
+        grille = findViewById(R.id.grille);
+
+    }
+
+    private void observerPartie() {
+
+        ControleurObservation.observerModele(MPartie.class.getSimpleName(),
+                new ListenerObservateur() {
+                    @Override
+                    public void reagirNouveauModele(Modele modele) {
+
+                        MPartie partie = getPartie(modele);
+
+                        preparerAffichage(partie);
+
+                        miseAJourGrille(partie);
+
+                    }
+
+                    @Override
+                    public void reagirChangementAuModele(Modele modele) {
+
+                        MPartie partie = getPartie(modele);
+
+                        miseAJourGrille(partie);
+
+                    }
+                });
+    }
+
+    private void preparerAffichage(MPartie partie) {
+
+        MParametresPartie parametresPartie = partie.getParametres();
+
+        grille.creerGrille(parametresPartie.getHauteur(), parametresPartie.getLargeur());
+
+    }
+
     private MPartie getPartie(Modele modele){
 
-        return null;
+        try{
+
+            return (MPartie) modele;
+
+        }catch(ClassCastException e){
+
+            throw new ErreurObservation(e);
+
+        }
+
     }
 
-    private void initialiserGrille(MPartie mPartie){
-        int hauteur = mPartie.getParametres().getHauteur();
-        int largeur = mPartie.getParametres().getLargeur();
-        grille.creerGrille(hauteur,largeur);
-    }
+    private void miseAJourGrille(MPartie partie){
 
-    public void miseAJourGrille(MPartie partie){
         grille.afficherJetons(partie.getGrille());
+
     }
+
 }
