@@ -136,4 +136,9 @@ public final class ControleurModeles {
         }
     }
 
+    private static String getCheminSauvegarde(String nomModele){
+
+        return "123";
+    }
+
 }
