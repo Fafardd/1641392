@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import ca.cours5b5.kevinfafard.controleurs.interfaces.Fournisseur;
+import ca.cours5b5.kevinfafard.donnees.Serveur;
 import ca.cours5b5.kevinfafard.donnees.SourceDeDonnees;
 import ca.cours5b5.kevinfafard.exceptions.ErreurModele;
 import ca.cours5b5.kevinfafard.modeles.MParametres;
@@ -13,6 +14,7 @@ import ca.cours5b5.kevinfafard.modeles.MParametresPartie;
 import ca.cours5b5.kevinfafard.modeles.MPartie;
 import ca.cours5b5.kevinfafard.modeles.Modele;
 import ca.cours5b5.kevinfafard.donnees.Disque;
+import ca.cours5b5.kevinfafard.usagers.UsagerCourant;
 
 public final class ControleurModeles {
 
@@ -30,6 +32,7 @@ public final class ControleurModeles {
 
         listeDeSauvegardes = new ArrayList<>();
         listeDeSauvegardes.add(Disque.getInstance());
+        listeDeSauvegardes.add(Serveur.getInstance());
 
     }
 
@@ -138,7 +141,11 @@ public final class ControleurModeles {
 
     private static String getCheminSauvegarde(String nomModele){
 
-        return "123";
+        String resultat;
+
+        resultat = nomModele + "/" + UsagerCourant.getId();
+
+        return resultat;
     }
 
 }

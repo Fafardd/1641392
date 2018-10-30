@@ -11,4 +11,9 @@ public abstract class SourceDeDonnees {
 
     //public abstract void detruireSauvegarde(String cheminSauvegarde);
 
+    protected String getNomModele(String cheminSauvegarde){
+
+        return null;
+    }
+
 }

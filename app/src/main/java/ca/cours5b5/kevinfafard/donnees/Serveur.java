@@ -1,5 +1,7 @@
 package ca.cours5b5.kevinfafard.donnees;
 
+import android.util.Log;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -12,21 +14,22 @@ public class Serveur extends SourceDeDonnees {
 
     private Serveur(){}
 
-    private static final Serveur instance = null;
+    private static final Serveur instance = new Serveur();
 
     public static Serveur getInstance(){
-        return null;
+        return instance;
     }
     @Override
     public Map<String, Object> chargerModele(String cheminSauvegarde) {
 
-        DatabaseReference noeud = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
+        /*DatabaseReference noeud = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
 
 
 
         Map<String, Object> objetJson = Jsonification.aPartirChaineJson(noeud.toString());
 
-        return objetJson;
+        return objetJson;*/
+        return null;
     }
 
     @Override
@@ -36,6 +39,7 @@ public class Serveur extends SourceDeDonnees {
         noeud.setValue(objetJson);
 
 
+        Log.d("atelier11", noeud.toString());
     }
 
     //@Override
