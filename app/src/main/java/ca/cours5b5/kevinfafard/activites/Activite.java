@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import ca.cours5b5.kevinfafard.controleurs.ControleurModeles;
 import ca.cours5b5.kevinfafard.donnees.Disque;
 import ca.cours5b5.kevinfafard.donnees.SauvegardeTemporaire;
+import ca.cours5b5.kevinfafard.donnees.Serveur;
 import ca.cours5b5.kevinfafard.modeles.MParametres;
 
 
@@ -24,7 +25,9 @@ public abstract class Activite extends AppCompatActivity {
 
         ControleurModeles.setSequenceDeChargement(
                 new SauvegardeTemporaire(savedInstanceState),
-                Disque.getInstance());
+                Serveur.getInstance(),
+                Disque.getInstance()
+                );
         
     }
 
