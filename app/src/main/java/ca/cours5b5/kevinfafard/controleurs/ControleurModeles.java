@@ -13,9 +13,11 @@ import ca.cours5b5.kevinfafard.donnees.ListenerChargement;
 import ca.cours5b5.kevinfafard.donnees.Serveur;
 import ca.cours5b5.kevinfafard.donnees.SourceDeDonnees;
 import ca.cours5b5.kevinfafard.exceptions.ErreurModele;
+import ca.cours5b5.kevinfafard.modeles.Identifiable;
 import ca.cours5b5.kevinfafard.modeles.MParametres;
 import ca.cours5b5.kevinfafard.modeles.MParametresPartie;
 import ca.cours5b5.kevinfafard.modeles.MPartie;
+import ca.cours5b5.kevinfafard.modeles.MPartieReseau;
 import ca.cours5b5.kevinfafard.modeles.Modele;
 import ca.cours5b5.kevinfafard.donnees.Disque;
 import ca.cours5b5.kevinfafard.usagers.UsagerCourant;
@@ -111,6 +113,15 @@ public final class ControleurModeles {
             });
 
 
+        }else if (nomModele.equals(MPartieReseau.class.getSimpleName())) {
+            getModele(MParametres.class.getSimpleName(), new ListenerGetModele() {
+                @Override
+                public void reagirAuModele(Modele modele) {
+                    MParametres mParametres = (MParametres) modele;
+                    MPartieReseau mPartieReseau = new MPartieReseau(mParametres.getParametresPartie().cloner());
+                    listenerGetModele.reagirAuModele(mPartieReseau);
+                }
+            });
         } else {
 
             throw new ErreurModele("Modèle inconnu: " + nomModele);
@@ -212,7 +223,12 @@ public final class ControleurModeles {
 
         String resultat;
 
-        resultat = nomModele + "/" + UsagerCourant.getId();
+        Modele modele = modelesEnMemoire.get(nomModele);
+        if(modele!=null && modele instanceof Identifiable){
+            resultat = nomModele + "/" + ((Identifiable) modele).getId();
+        }else{
+            resultat = nomModele + "/" + UsagerCourant.getId();
+        }
 
         return resultat;
     }
