@@ -13,17 +13,21 @@ import ca.cours5b5.kevinfafard.serialisation.AttributSerialisable;
 public class MPartieReseau extends MPartie implements Fournisseur, Identifiable {
     @AttributSerialisable
     public String idJoueurInvite;
-    private String __idJoueurInvite;
+    private String __idJoueurInvite = "idJoueurInvite";
     @AttributSerialisable
     public String idJoueurHote;
-    private String __idJoueurHote;
+    private String __idJoueurHote = "idJouerHote";
+
     public MPartieReseau(MParametresPartie parametres) {
         super(parametres);
+        fournirActionRecevoirCoup();
     }
+
     @Override
     public String getId() {
         return idJoueurHote;
     }
+
     private void fournirActionRecevoirCoup(){
         ControleurAction.fournirAction(this,
                 GCommande.RECEVOIR_COUP_RESEAU,
@@ -31,13 +35,15 @@ public class MPartieReseau extends MPartie implements Fournisseur, Identifiable 
                     @Override
                     public void executer(Object... args) {
                         try{
-                            //TODO
+                            int colonne = Integer.parseInt((String)args[0]);
+                            recevoirCoupReseau(colonne);
                         }catch(ClassCastException e){
-                            //TODO
+                            throw new ErreurAction(e);
                         }
                     }
                 });
     }
+
     @Override
     protected void fournirActionPlacerJeton(){
         ControleurAction.fournirAction(this,
@@ -55,13 +61,20 @@ public class MPartieReseau extends MPartie implements Fournisseur, Identifiable 
                     }
                 });
     }
+
     private void recevoirCoupReseau(int colonne){
+        jouerCoup(colonne);
     }
+
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation{
     }
+
     @Override
     public Map<String, Object> enObjetJson() throws ErreurSerialisation{
-        return null;
+        Map<String, Object> objetJson = super.enObjetJson();
+        objetJson.put(__idJoueurHote, idJoueurHote);
+        objetJson.put(__idJoueurInvite, idJoueurInvite);
+        return objetJson;
     }
 }

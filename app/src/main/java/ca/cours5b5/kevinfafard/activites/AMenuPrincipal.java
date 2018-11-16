@@ -25,6 +25,15 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
     private final int CODE_CONNEXION = 123;
     public boolean connecté = false;
 
+    private static List<AuthUI.IdpConfig> fournisseursDeConnexion = new ArrayList<>();
+
+    static{
+
+        fournisseursDeConnexion.add(new AuthUI.IdpConfig.GoogleBuilder().build());
+        fournisseursDeConnexion.add(new AuthUI.IdpConfig.EmailBuilder().build());
+        fournisseursDeConnexion.add(new AuthUI.IdpConfig.PhoneBuilder().build());
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +62,7 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
                     @Override
                     public void executer(Object... args) {
                         transitionPartieReseau();
+
                     }
                 });
     }
