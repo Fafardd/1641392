@@ -101,6 +101,11 @@ public class MPartie extends Modele implements Fournisseur {
 
             ControleurPartie.getInstance().gagnerPartie(couleurCourante);
 
+
+
+
+
+
         } else {
 
             prochaineCouleurCourante();

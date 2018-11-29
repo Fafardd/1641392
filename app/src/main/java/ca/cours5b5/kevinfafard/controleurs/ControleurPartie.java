@@ -19,11 +19,22 @@ public final class ControleurPartie {
 
         Action actionAfficherMessage = ControleurAction.demanderAction(GCommande.AFFICHER_MESSAGE_GAGNANT);
 
+        Action actionEffacerPartie = ControleurAction.demanderAction(GCommande.EFFACER_PARTIE);
 
         actionAfficherMessage.setArguments(couleurGagnante,
                 actionTerminerPartie);
 
         actionAfficherMessage.executerDesQuePossible();
+
+        actionEffacerPartie.executerDesQuePossible();
+
+        Log.d("test1", "testtttt");
+
+
+
+    }
+
+    public void effacerApresGagner(){
 
     }
 

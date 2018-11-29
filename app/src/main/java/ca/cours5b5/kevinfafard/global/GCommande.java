@@ -19,6 +19,7 @@ public enum GCommande {
 
 
     EFFACER_PARTIE_COURANTE,
+    EFFACER_PARTIE,
 
     RECEVOIR_COUP_RESEAU,
 
