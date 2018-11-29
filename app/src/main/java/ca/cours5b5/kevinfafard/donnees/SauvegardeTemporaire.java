@@ -4,13 +4,14 @@ import android.os.Bundle;
 
 import java.util.Map;
 
-
 import ca.cours5b5.kevinfafard.exceptions.ErreurModele;
 import ca.cours5b5.kevinfafard.serialisation.Jsonification;
 
 public class SauvegardeTemporaire extends SourceDeDonnees {
 
-    private Bundle bundle;
+    protected Bundle bundle;
+
+    public SauvegardeTemporaire(){}
 
     public SauvegardeTemporaire(Bundle bundle){
         this.bundle = bundle;
@@ -18,10 +19,16 @@ public class SauvegardeTemporaire extends SourceDeDonnees {
 
     @Override
     public void chargerModele(String cheminSauvegarde, ListenerChargement listenerChargement) {
+        if(bundle == null){
+            listenerChargement.reagirErreur(new ErreurModele("Le bundle est null"));
+            return;
+        }
 
-        if(bundle != null && bundle.containsKey(getCle(cheminSauvegarde))){
+        String cle = getCle(cheminSauvegarde);
 
-            String json = bundle.getString(cheminSauvegarde);
+        if(bundle.containsKey(cle)){
+
+            String json = bundle.getString(cle);
 
             Map<String, Object> objetJson = Jsonification.aPartirChaineJson(json);
 
@@ -29,23 +36,40 @@ public class SauvegardeTemporaire extends SourceDeDonnees {
 
         }else{
 
-            listenerChargement.reagirErreur(new ErreurModele("Clé inexistante"));
+            listenerChargement.reagirErreur(new ErreurModele("La clé " + cheminSauvegarde + " n'est pas dans la sauvegarde temporaire"));
         }
     }
+
 
     @Override
     public void sauvegarderModele(String cheminSauvegarde, Map<String, Object> objetJson) {
-        if(bundle != null){
-
-            String json = Jsonification.enChaineJson(objetJson);
-            bundle.putString(getCle(cheminSauvegarde), json);
-
+        if(bundle == null){
+            return;
         }
+
+        String cle = getCle(cheminSauvegarde);
+
+        String json = Jsonification.enChaineJson(objetJson);
+        bundle.putString(cle, json);
+
     }
+
 
     private String getCle(String cheminSauvegarde){
-        String[] split = cheminSauvegarde.split("/");
-        return split[0];
+        return getNomModele(cheminSauvegarde);
     }
+
+
+    @Override
+    public void detruireSauvegarde(String cheminSauvegarde) {
+        if(bundle == null){
+            return;
+        }
+
+        String cle = getCle(cheminSauvegarde);
+
+        bundle.remove(cle);
+    }
+
 
 }

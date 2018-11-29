@@ -6,6 +6,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public abstract class Proxy {
 
     private String cheminServeur;
+
     protected DatabaseReference noeudServeur;
 
     public Proxy(String cheminServeur){
@@ -13,13 +14,20 @@ public abstract class Proxy {
     }
 
     public void connecterAuServeur(){
+
         noeudServeur = FirebaseDatabase.getInstance().getReference(cheminServeur);
+
     }
 
     public void deconnecterDuServeur(){
         noeudServeur = null;
-        detruireValeurs();
+    }
+
+    protected boolean siConnecte(){
+        return noeudServeur != null;
     }
 
     public abstract void detruireValeurs();
+
+
 }

@@ -15,6 +15,8 @@ import ca.cours5b5.kevinfafard.serialisation.Jsonification;
 
 public final class Disque extends SourceDeDonnees {
 
+    private Disque(){}
+
     private static final Disque instance = new Disque();
 
     public static Disque getInstance() {
@@ -23,13 +25,11 @@ public final class Disque extends SourceDeDonnees {
 
     private File repertoireRacine;
 
-    private Disque() {}
 
     public void setRepertoireRacine(File repertoireRacine) {
-
         this.repertoireRacine = repertoireRacine;
-
     }
+
 
     @Override
     public void chargerModele(String cheminSauvegarde, ListenerChargement listenerChargement) {
@@ -44,16 +44,13 @@ public final class Disque extends SourceDeDonnees {
 
             listenerChargement.reagirSucces(objetJson);
 
-        } catch (FileNotFoundException e) {
-
-            listenerChargement.reagirErreur(e);
-
         } catch (IOException e) {
 
             listenerChargement.reagirErreur(e);
 
         }
     }
+
 
     @Override
     public void sauvegarderModele(String cheminSauvegarde, Map<String, Object> objetJson) {
@@ -68,11 +65,14 @@ public final class Disque extends SourceDeDonnees {
 
             outputStream.write(json.getBytes());
 
+            outputStream.close();
+
         } catch (FileNotFoundException e) {
 
             Log.d("Atelier07", "File not found: " + cheminSauvegarde);
 
         } catch (IOException e) {
+
 
             Log.d("Atelier07", "IOException: " + cheminSauvegarde);
 
@@ -80,20 +80,31 @@ public final class Disque extends SourceDeDonnees {
     }
 
 
+    @Override
+    public void detruireSauvegarde(String cheminSauvegarde) {
+
+        File fichier = getFichier(cheminSauvegarde);
+        fichier.delete();
+
+    }
+
+
     private File getFichier(String cheminSauvegarde) {
 
-        String[] split = cheminSauvegarde.split("/");
+        String nomModele = getNomModele(cheminSauvegarde);
 
-        String nomFichier = getNomFichier(split[0]);
+        String nomFichier = getNomFichier(nomModele);
 
         return new File(repertoireRacine, nomFichier);
 
     }
+
 
     private String getNomFichier(String nomModele) {
 
         return nomModele + GConstantes.EXTENSION_PAR_DEFAUT;
 
     }
+
 
 }
