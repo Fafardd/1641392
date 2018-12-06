@@ -1,5 +1,7 @@
 package ca.cours5b5.kevinfafard.modeles;
 
+import android.util.Log;
+
 import com.google.gson.internal.bind.ObjectTypeAdapter;
 
 import java.util.ArrayList;
@@ -16,13 +18,16 @@ import ca.cours5b5.kevinfafard.serialisation.AttributSerialisable;
 public class MGrille extends Modele  {
 
     private List<MColonne> colonnes;
+    private int hauteur = -1;
 
 
-    public MGrille(int largeur){
-
+    public MGrille(int largeur, int hauteur){
+        this.hauteur = hauteur;
         colonnes = new ArrayList<>();
 
         initialiserColonnes(largeur);
+
+
 
     }
 
@@ -47,6 +52,8 @@ public class MGrille extends Modele  {
         colonnes.get(colonne).placerJeton(couleur);
 
     }
+
+
 
 
     @Override
@@ -80,14 +87,20 @@ public class MGrille extends Modele  {
     }
 
     public boolean siColonnePleine(int idColonne){
+        boolean plein = false;
 
         MColonne colonne = colonnes.get(idColonne);
+        Log.d("test22", String.valueOf(colonne.getJetons().size()));
+        Log.d("test22", String.valueOf(this.getColonnes().size()));
 
-        if(colonne.getJetons().size() == this.getColonnes().size()){
+        if(colonne.getJetons().size() == this.hauteur){
+
+            plein = true;
 
         }
 
-        return true;
+        return plein;
+
     }
 
     private boolean siCouleurGagneCetteColonne(GCouleur couleur, int idColonne, int pourGagner){
@@ -159,6 +172,8 @@ public class MGrille extends Modele  {
 
         return false;
     }
+
+
 
 
 }

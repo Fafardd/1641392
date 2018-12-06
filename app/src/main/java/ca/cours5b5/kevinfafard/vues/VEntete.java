@@ -36,7 +36,7 @@ public class VEntete extends AppCompatButton {
         return colonne;
     }
 
-    public void desactiverColonne(){
+    /*public void desactiverColonne(){
         this.setEnabled(false);
-    }
+    }*/
 }

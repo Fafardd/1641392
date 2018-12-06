@@ -1,5 +1,7 @@
 package ca.cours5b5.kevinfafard.vues;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
@@ -58,7 +60,6 @@ public class VCase extends AppCompatButton {
         switch (jeton.getCouleur()){
 
             case ROUGE:
-
                 setBackgroundColor(getResources().getColor(R.color.ROUGE, null));
 
                 break;

@@ -112,9 +112,13 @@ public class VGrille extends GridLayout {
         }
     }
 
-    public void desactiverEntete(int idColonne){
+    public void desactiverEntete(MGrille grille){
 
-
+        for (int i =0 ; i<entetes.size(); i++) {
+            if(grille.siColonnePleine(i)){
+                entetes.get(i).setEnabled(false);
+            }
+        }
 
     }
 

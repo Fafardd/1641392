@@ -23,6 +23,8 @@ public class APartie extends Activite implements Fournisseur {
     }
 
 
+
+
     private void fournirActionTerminerPartie() {
 
         ControleurAction.fournirAction(this,

@@ -55,7 +55,7 @@ public class MPartie extends Modele implements Fournisseur {
 
 
     private void initialiserGrille() {
-        grille = new MGrille(parametres.getLargeur());
+        grille = new MGrille(parametres.getLargeur(), parametres.getHauteur());
     }
 
 
@@ -97,9 +97,7 @@ public class MPartie extends Modele implements Fournisseur {
         listeCoups.add(colonne);
         grille.placerJeton(colonne, couleurCourante);
 
-        if(grille.siColonnePleine(colonne)){
-            ControleurPartie.getInstance().desactiverEntete();
-        }
+
         
         if (grille.siCouleurGagne(couleurCourante, parametres.getPourGagner())) {
 
