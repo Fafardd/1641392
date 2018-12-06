@@ -169,10 +169,17 @@ public class VPartie extends Vue {
         }
     }
 
+
+
     private void miseAJourGrille(MPartie partie){
 
         grille.afficherJetons(partie.getGrille());
         grille.desactiverEntete(partie.getGrille());
+
+
+        grille.desactiverTousLesEntetes(partie.getGrille());
+
+
 
     }
 

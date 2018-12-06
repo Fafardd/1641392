@@ -108,6 +108,8 @@ public class MPartie extends Modele implements Fournisseur {
 
 
 
+
+
         } else {
 
             prochaineCouleurCourante();

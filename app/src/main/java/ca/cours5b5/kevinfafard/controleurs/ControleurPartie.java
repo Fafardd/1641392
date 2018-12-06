@@ -23,6 +23,7 @@ public final class ControleurPartie {
 
 
 
+
         actionAfficherMessage.setArguments(couleurGagnante,
                 actionTerminerPartie);
 

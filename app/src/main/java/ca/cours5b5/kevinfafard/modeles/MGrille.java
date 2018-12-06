@@ -19,7 +19,11 @@ public class MGrille extends Modele  {
 
     private List<MColonne> colonnes;
     private int hauteur = -1;
+    private boolean gagne = false;
 
+    public boolean getGagne(){
+        return this.gagne;
+    }
 
     public MGrille(int largeur, int hauteur){
         this.hauteur = hauteur;
@@ -77,8 +81,10 @@ public class MGrille extends Modele  {
         for(int idColonne = 0; idColonne < colonnes.size(); idColonne++){
 
             if(siCouleurGagneCetteColonne(couleur, idColonne, pourGagner)){
+                gagne = true;
 
                 return true;
+
 
             }
         }
@@ -90,8 +96,6 @@ public class MGrille extends Modele  {
         boolean plein = false;
 
         MColonne colonne = colonnes.get(idColonne);
-        Log.d("test22", String.valueOf(colonne.getJetons().size()));
-        Log.d("test22", String.valueOf(this.getColonnes().size()));
 
         if(colonne.getJetons().size() == this.hauteur){
 
