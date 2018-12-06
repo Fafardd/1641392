@@ -136,6 +136,8 @@ public class VPartie extends Vue {
         return MPartie.class.getSimpleName();
     }
 
+
+
     private void miseAJourNomJoueur(MPartie partie) {
 
         switch(partie.getCouleurCourante()){

@@ -32,6 +32,7 @@ public enum GCommande {
     RECEVOIR_JOUEUR_EN_ATTENTE,
     RECEVOIR_JOUEUR_INVITE,
 
+    DESACTIVER_ENTETE,
 
 
 

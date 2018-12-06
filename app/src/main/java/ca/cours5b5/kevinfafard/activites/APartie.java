@@ -31,7 +31,7 @@ public class APartie extends Activite implements Fournisseur {
                     @Override
                     public void executer(Object... args) {
 
-                        quitterCetteActivite();
+                        quitterActiviteEnCours();
 
                     }
                 });

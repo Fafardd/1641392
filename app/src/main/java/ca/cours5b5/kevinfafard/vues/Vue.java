@@ -48,6 +48,10 @@ public abstract class Vue extends ConstraintLayout implements Fournisseur {
 
                     }
                 });
+
+
+
+
     }
 
     private void afficherMessagePuisExecuterAction(String message, final Action actionApresMessage) {
@@ -61,6 +65,8 @@ public abstract class Vue extends ConstraintLayout implements Fournisseur {
 
                 if (event == Snackbar.Callback.DISMISS_EVENT_TIMEOUT) {
                     actionApresMessage.executerDesQuePossible();
+                    Action actionEffacerPartie = ControleurAction.demanderAction(GCommande.EFFACER_PARTIE);
+                    actionEffacerPartie.executerDesQuePossible();
                 }
 
             }

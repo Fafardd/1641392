@@ -112,6 +112,11 @@ public class VGrille extends GridLayout {
         }
     }
 
+    public void desactiverEntete(int idColonne){
+
+
+
+    }
 
     private LayoutParams getMiseEnPageEntete(int colonne){
 

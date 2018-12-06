@@ -41,6 +41,9 @@ public class VMenuPrincipal extends Vue {
     private Action actionConnexion;
     private Action actionDeconnexion;
 
+    private Button boutonEffacerPartie;
+    private Action actionEffacerPartie;
+
 
     @Override
     protected void onFinishInflate(){
@@ -67,6 +70,10 @@ public class VMenuPrincipal extends Vue {
 
         boutonConnexion = findViewById(R.id.bouton_connexion);
 
+        boutonEffacerPartie = findViewById(R.id.bouton_effacer_partie);
+
+
+
     }
 
     private void demanderActions() {
@@ -80,6 +87,8 @@ public class VMenuPrincipal extends Vue {
         actionConnexion = ControleurAction.demanderAction(GCommande.CONNEXION);
 
         actionDeconnexion = ControleurAction.demanderAction(GCommande.DECONNEXION);
+
+        actionEffacerPartie = ControleurAction.demanderAction(GCommande.EFFACER_PARTIE_COURANTE);
 
 
     }
@@ -124,6 +133,13 @@ public class VMenuPrincipal extends Vue {
 
                 }
 
+            }
+        });
+
+        boutonEffacerPartie.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actionEffacerPartie.executerDesQuePossible();
             }
         });
     }

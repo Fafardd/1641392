@@ -96,6 +96,10 @@ public class MPartie extends Modele implements Fournisseur {
 
         listeCoups.add(colonne);
         grille.placerJeton(colonne, couleurCourante);
+
+        if(grille.siColonnePleine(colonne)){
+            ControleurPartie.getInstance().desactiverEntete();
+        }
         
         if (grille.siCouleurGagne(couleurCourante, parametres.getPourGagner())) {
 

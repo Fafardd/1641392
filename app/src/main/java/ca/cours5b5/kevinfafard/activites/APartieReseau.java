@@ -5,15 +5,11 @@ import android.os.Bundle;
 import ca.cours5b5.kevinfafard.R;
 import ca.cours5b5.kevinfafard.controleurs.ControleurAction;
 import ca.cours5b5.kevinfafard.controleurs.ControleurModeles;
-import ca.cours5b5.kevinfafard.controleurs.ControleurPartie;
 import ca.cours5b5.kevinfafard.controleurs.ControleurPartieReseau;
 import ca.cours5b5.kevinfafard.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.kevinfafard.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.kevinfafard.donnees.SauvegardeTemporaire;
-import ca.cours5b5.kevinfafard.donnees.Serveur;
 import ca.cours5b5.kevinfafard.global.GCommande;
-import ca.cours5b5.kevinfafard.global.GConstantes;
-import ca.cours5b5.kevinfafard.modeles.MParametres;
 import ca.cours5b5.kevinfafard.modeles.MPartieReseau;
 
 
@@ -40,7 +36,7 @@ public class APartieReseau extends Activite implements Fournisseur {
                     public void executer(Object... args) {
 
                         // XXX: terminerPartie() est appelée sur onDestroy
-                        quitterCetteActivite();
+                        quitterActiviteEnCours();
 
                     }
                 });

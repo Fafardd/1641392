@@ -79,6 +79,16 @@ public class MGrille extends Modele  {
         return false;
     }
 
+    public boolean siColonnePleine(int idColonne){
+
+        MColonne colonne = colonnes.get(idColonne);
+
+        if(colonne.getJetons().size() == this.getColonnes().size()){
+
+        }
+
+        return true;
+    }
 
     private boolean siCouleurGagneCetteColonne(GCouleur couleur, int idColonne, int pourGagner){
 

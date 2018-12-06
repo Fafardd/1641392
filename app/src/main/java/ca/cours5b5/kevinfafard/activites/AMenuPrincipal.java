@@ -14,6 +14,7 @@ import java.util.List;
 
 import ca.cours5b5.kevinfafard.R;
 import ca.cours5b5.kevinfafard.controleurs.ControleurAction;
+import ca.cours5b5.kevinfafard.modeles.MPartie;
 import ca.cours5b5.kevinfafard.modeles.MPartieReseau;
 import ca.cours5b5.kevinfafard.usagers.JoueursEnAttente;
 import ca.cours5b5.kevinfafard.controleurs.ControleurModeles;
@@ -48,8 +49,18 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
 
         fournirActionJoindreOuCreerPartieReseau();
 
+        fournirActionEffacerPartie();
+
     }
 
+    private  void fournirActionEffacerPartie(){
+        ControleurAction.fournirAction(this, GCommande.EFFACER_PARTIE_COURANTE, new ListenerFournisseur() {
+            @Override
+            public void executer(Object... args) {
+                ControleurModeles.detruireModele(MPartie.class.getSimpleName());
+            }
+        });
+    }
 
     private void fournirActionJoindreOuCreerPartieReseau() {
 
