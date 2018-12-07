@@ -1,6 +1,7 @@
 package ca.cours5b5.kevinfafard.vues;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.TextView;
@@ -143,15 +144,28 @@ public class VPartie extends Vue {
         switch(partie.getCouleurCourante()){
 
             case ROUGE:
-
                 texteJoueurDeux.setVisibility(INVISIBLE);
-                texteJoueurUn.setVisibility(VISIBLE);
+                //texteJoueurUn.setVisibility(VISIBLE);
+
+                String mess = getResources().getString(R.string.joueur1);
+
+                texteJoueurUn.setText(mess);
+                texteJoueurUn.setBackgroundColor(Color.RED);
+
                 break;
 
             case JAUNE:
 
-                texteJoueurUn.setVisibility(INVISIBLE);
-                texteJoueurDeux.setVisibility(VISIBLE);
+                /*texteJoueurUn.setVisibility(INVISIBLE);
+                texteJoueurDeux.setVisibility(VISIBLE);*/
+
+
+                texteJoueurDeux.setVisibility(INVISIBLE);
+                String mess2 = getResources().getString(R.string.joueur2);
+
+                texteJoueurUn.setText(mess2);
+                texteJoueurUn.setBackgroundColor(Color.YELLOW);
+
                 break;
 
         }
